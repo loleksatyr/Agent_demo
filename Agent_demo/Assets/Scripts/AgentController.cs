@@ -11,7 +11,7 @@ public class AgentController : MonoBehaviour
     void Start()
     {
         MoveSpeed = 4;
-        number = Random.Range(-15f, 15f);
+        number = Random.Range(-10f, 10f);
         transform.Rotate(0, number, 0, Space.Self);
     }
 
@@ -26,9 +26,11 @@ public class AgentController : MonoBehaviour
     }
     private void checkedges()
     {
-        bool edge = Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), 2);
+        
+        bool edge = Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), 1);
         if (edge == false)
         {
+            number = Random.Range(-10f, 10f);
             transform.Rotate(0, number, 0, Space.Self);
         }
     }

@@ -5,12 +5,12 @@ using UnityEngine;
 public class AgentController : MonoBehaviour
 {
     [SerializeField] int MoveSpeed;
-    [SerializeField] int Health;
+    [SerializeField] int Health = 3;
     [SerializeField] float number;
+    public static int currentHealth;
     void Start()
     {
         MoveSpeed = 4;
-        Health = 3;
         number = Random.Range(-15f, 15f);
         transform.Rotate(0, number, 0, Space.Self);
     }
@@ -20,6 +20,9 @@ public class AgentController : MonoBehaviour
     {
         checkedges();
         transform.position += transform.forward * MoveSpeed * Time.deltaTime;
+        if (Health <=0) {
+            Destroy(gameObject);
+        }
     }
     private void checkedges()
     {
@@ -29,4 +32,19 @@ public class AgentController : MonoBehaviour
             transform.Rotate(0, number, 0, Space.Self);
         }
     }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Agent") {
+            Health--;
+        }
+    }
+    public void OnMouseDown()
+    {
+        currentHealth = Health;
+        CanvasController.ShowController = true;
+    }
+    public int GetHealth() {
+        return Health;
+    }
+
 }

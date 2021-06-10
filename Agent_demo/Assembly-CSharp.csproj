@@ -58,6 +58,8 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\AgentController.cs" />
+    <Compile Include="Assets\Scripts\CanvasController.cs" />
+    <Compile Include="Assets\Scripts\Reset.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
